@@ -1,5 +1,23 @@
-let stringArr: string[] = ['a', 'b', 'c']
+type stringOrNumber = string | number;
+type stringOrNumberArray = (string|number)[]
+type Guitarist = {
+  name: string,
+  isActive: boolean,
+  bands : stringOrNumberArray
+}
 
-let guitars: (string | number)[] = ['lesPaul', 'Strat', 5150];
+const add = (a:number,b:number): number => {
+  return a + b;
+}
 
-let mixedData: (string | number | boolean)[]= ['ABC', 123, true]
+const logMsg = (msg: any): void => {
+  console.log(msg);
+}
+
+logMsg('hello!')
+
+let substract = function (c: number, d: number):number {
+  return c - d;
+}
+
+console.log(substract(3,2))
