@@ -21,3 +21,19 @@ let substract = function (c: number, d: number):number {
 }
 
 console.log(substract(3,2))
+
+type mathFunction = (a: number, b: number) => number;
+ 
+let multiply : mathFunction = function(a: number, b: number){
+  return a * b;
+}
+
+let addAllNums = (...nums: number[]):number => {
+	return nums.reduce((prev, curr) => prev + curr)
+}
+
+logMsg(addAllNums(3,2,1))
+
+const createError = (msg: string): Error => {
+  throw new Error(msg);
+}
