@@ -315,3 +315,107 @@ class StateObject<T> {
 
 const store = new StateObject<number>(2)
 console.log(store.state)
+
+// =================================================================================================================
+
+// Utility types
+interface Assignment {
+  studentId: string,
+  title: string,
+  grade: number,
+  verified?: boolean,
+}
+
+const updateAssigment = (assign: Assignment, propsToUpdate: Partial<Assignment>) : Assignment => {
+  return {...assign, ...propsToUpdate}
+}
+
+const assign1 : Assignment = {
+  studentId: 'Tomasito123',
+  title: 'Final project',
+  grade: 0,
+}
+
+console.log(updateAssigment(assign1, {grade: 86}));
+const assignGrade : Assignment = updateAssigment(assign1, {grade: 98})
+console.log(assignGrade)
+
+// required and readonly 
+const recordAssigment = (assign:  Required<Assignment>) : Assignment => {
+  return assign
+}
+
+const assignVerified: Readonly<Assignment> = recordAssigment({...assignGrade, verified: true})
+
+// Record
+const hexColor : Record<string, string> = {
+  red : "FF0000",
+  green: "00FF00",
+  blue: "0000FF",
+}
+
+type Students = 'Sara' | 'Kelly' | 'Walter'
+type LetterGrades = 'A' | 'B' | 'C' | 'D' | 'E'
+
+// Records es un tipo que describe un objeto con un conjunto fijo de claves y un tipo especifico para cada valor correspondiente a las claves.
+
+const finalGrades : Record<Students, LetterGrades> = {
+  Sara: 'A',
+  Kelly: 'B',
+  Walter : 'C',
+}
+
+interface Grades {
+  assign1: number,
+  assign2: number,
+}
+
+const gradeData : Record<Students, Grades> = {
+  Sara: {assign1: 86, assign2: 32},
+  Kelly: {assign1: 23, assign2:76},
+  Walter: {assign1: 99, assign2:56},
+}
+
+console.log(gradeData.Walter)
+
+// Pick and Omit
+type AssignResult = Pick<Assignment, 'grade' | 'studentId'> 
+
+const score: AssignResult = {
+  grade: 56,
+  studentId: 'Cosmolito'
+}
+
+// Exclude saca del primer parametro (number string o boolean), lo que se le pase por el segundo parametro
+type MyNumberTypes = number | string | boolean
+type myExcludeTypes = Exclude<MyNumberTypes, number>
+
+type MyAnimalTypes = 'dog' | 'cat' | 'bird' | 1 | 2 | 3;
+type MyBirdTypes = Extract<MyAnimalTypes, 'bird' | 1 | 2>;
+
+// NonNullable
+type AllPossiblesGrades = 'Dave' | "Tomas" | null
+type OnlyNames = NonNullable<AllPossiblesGrades>
+
+// ReturnType
+const createNewAssign = (title: string, points: number) => {
+  return {title,points}
+}
+
+type NewAssing = ReturnType<typeof createNewAssign>
+
+const tsAssign: NewAssing = createNewAssign('Utility Types', 100);
+console.log(tsAssign);
+
+// Parameters
+
+type AssignParams = Parameters<typeof createNewAssign>
+
+const assignArgs: AssignParams = [
+  'Generics',
+  100
+]
+
+const tsAssign2: NewAssing = createNewAssign(...assignArgs);
+console.log(tsAssign2);
+

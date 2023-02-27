@@ -210,3 +210,53 @@ class StateObject {
 }
 const store = new StateObject(2);
 console.log(store.state);
+const updateAssigment = (assign, propsToUpdate) => {
+    return Object.assign(Object.assign({}, assign), propsToUpdate);
+};
+const assign1 = {
+    studentId: 'Tomasito123',
+    title: 'Final project',
+    grade: 0,
+};
+console.log(updateAssigment(assign1, { grade: 86 }));
+const assignGrade = updateAssigment(assign1, { grade: 98 });
+console.log(assignGrade);
+// required and readonly 
+const recordAssigment = (assign) => {
+    return assign;
+};
+const assignVerified = recordAssigment(Object.assign(Object.assign({}, assignGrade), { verified: true }));
+// Record
+const hexColor = {
+    red: "FF0000",
+    green: "00FF00",
+    blue: "0000FF",
+};
+// Records es un tipo que describe un objeto con un conjunto fijo de claves y un tipo especifico para cada valor correspondiente a las claves.
+const finalGrades = {
+    Sara: 'A',
+    Kelly: 'B',
+    Walter: 'C',
+};
+const gradeData = {
+    Sara: { assign1: 86, assign2: 32 },
+    Kelly: { assign1: 23, assign2: 76 },
+    Walter: { assign1: 99, assign2: 56 },
+};
+console.log(gradeData.Walter);
+const score = {
+    grade: 56,
+    studentId: 'Cosmolito'
+};
+// ReturnType
+const createNewAssign = (title, points) => {
+    return { title, points };
+};
+const tsAssign = createNewAssign('Utility Types', 100);
+console.log(tsAssign);
+const assignArgs = [
+    'Generics',
+    100
+];
+const tsAssign2 = createNewAssign(...assignArgs);
+console.log(tsAssign2);
