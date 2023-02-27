@@ -57,3 +57,21 @@ const addOrConcat = (a: number, b: number, c: 'add' | 'concat'): number | string
 
 let myVal : string = addOrConcat(2, 2, 'concat') as string;
 
+let year : HTMLElement | null = document.getElementById('year')
+let thisYear: string = new Date().getFullYear().toString();
+if (year) {
+  year.setAttribute('datetime', thisYear);
+  year.textContent = thisYear;
+}
+
+// classes
+class Coder {
+  constructor( public readonly name: string, readonly music: string, private age: number, protected lang: string){
+    this.name = name;
+    this.music = music;
+    this.age = age;
+    this.lang = lang;
+  }
+
+}
+
