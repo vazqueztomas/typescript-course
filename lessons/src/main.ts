@@ -245,3 +245,7 @@ const monthlyIncomes : Incomes = {
 }
 
 console.log(monthlyIncomes); 
+
+//================================================================================================
+
+// Generics

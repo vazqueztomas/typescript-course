@@ -159,3 +159,5 @@ const monthlyIncomes = {
     sidehustle: 500,
 };
 console.log(monthlyIncomes);
+//================================================================================================
+// Generics
