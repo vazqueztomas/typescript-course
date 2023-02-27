@@ -36,6 +36,7 @@ if (year) {
     year.setAttribute('datetime', thisYear);
     year.textContent = thisYear;
 }
+// ===========================================================
 // classes
 class Coder {
     constructor(name, music, age, lang = 'Typescript') {
@@ -115,3 +116,46 @@ class Bands {
 const myBands = new Bands();
 myBands.data = ['ACDC', 'Guns and Roses', 'Kiss'];
 console.log(myBands.data);
+// interface TransactionObj {
+//   Pizza: number,
+//   Books: number,
+//   Job: number
+// }
+const todayTransactions = {
+    Pizza: -10,
+    Books: 32,
+    Job: 3
+};
+console.log(todayTransactions);
+let prop = 'Pizza';
+console.log(todayTransactions[prop]);
+const todaysNet = (transactions) => {
+    let total = 0;
+    for (let transaction in transactions) {
+        total += transactions[transaction];
+    }
+    return total;
+};
+console.log(todaysNet(todayTransactions));
+const student = {
+    name: 'Tom',
+    GPA: 10,
+    classes: [100, 200]
+};
+// console.log(student.test)
+for (const key in student) {
+    console.log(`${key}: ${student[key]} using a for loop`); // this is another way to access all properties
+}
+Object.keys(student).map((el) => {
+    console.log(`${el}: ${student[el]} using Object.keys`);
+});
+const logStudentKey = (student, key) => {
+    console.log(`Student ${key}: ${student[key]}`);
+};
+logStudentKey(student, 'GPA');
+const monthlyIncomes = {
+    salary: 100,
+    bonus: 200,
+    sidehustle: 500,
+};
+console.log(monthlyIncomes);

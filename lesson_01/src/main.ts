@@ -38,7 +38,7 @@ const createError = (msg: string): Error => {
   throw new Error(msg);
 }
 
-
+// =================================================================================================================
 // assertions
 
 type One = string;
@@ -64,6 +64,7 @@ if (year) {
   year.textContent = thisYear;
 }
 
+// ===========================================================
 // classes
 class Coder {
   secondLang!: string
@@ -169,3 +170,78 @@ class Bands {
 const myBands = new Bands()
 myBands.data = ['ACDC', 'Guns and Roses', 'Kiss'];
 console.log(myBands.data)
+
+// =========================================================================================================================
+// Index signature
+interface TransactionObj {
+  readonly [index: string]: number
+}
+// interface TransactionObj {
+//   Pizza: number,
+//   Books: number,
+//   Job: number
+// }
+
+const todayTransactions: TransactionObj = {
+  Pizza: -10,
+  Books: 32,
+  Job: 3
+}
+
+console.log(todayTransactions)
+
+let prop: string = 'Pizza'
+console.log(todayTransactions[prop])
+
+const todaysNet = (transactions: TransactionObj): number => {
+  let total = 0
+  for (let transaction in transactions) {
+    total += transactions[transaction]
+  }
+  return total
+} 
+
+console.log(todaysNet(todayTransactions))
+
+interface Student {
+  // [key: string] : string | number | number[] | undefined
+  name: string,
+  GPA: number,
+  classes?:number[],
+}
+
+const student: Student = {
+  name: 'Tom',
+  GPA: 10,
+  classes: [100, 200]
+}
+
+// console.log(student.test)
+for (const key in student){
+  console.log(`${key}: ${student[key as keyof Student]} using a for loop`) // this is another way to access all properties
+}
+
+Object.keys(student).map((el) => {
+  console.log(`${el}: ${student[el as keyof Student]} using Object.keys`)
+})
+
+const logStudentKey = (student: Student, key: keyof Student) => {
+  console.log(`Student ${key}: ${student[key]}`)
+}
+
+logStudentKey(student, 'GPA') 
+
+// interface Incomes {
+//   [key: string] : number
+// }
+
+type Streams = 'salary' | 'bonus' | 'sidehustle'
+type Incomes = Record<Streams, number | string>
+
+const monthlyIncomes : Incomes = {
+  salary: 100,
+  bonus: 200,
+  sidehustle: 500,
+}
+
+console.log(monthlyIncomes); 
