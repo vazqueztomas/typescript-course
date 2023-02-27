@@ -66,12 +66,34 @@ if (year) {
 
 // classes
 class Coder {
-  constructor( public readonly name: string, readonly music: string, private age: number, protected lang: string){
+  secondLang!: string
+  constructor( public readonly name: string, readonly music: string, private age: number, protected lang: string = 'Typescript'){
     this.name = name;
-    this.music = music;
+    this.music = music; 
     this.age = age;
     this.lang = lang;
   }
 
+  public getAge() {
+    return `Hello, I'm ${this.age}`
+  }
 }
+
+const Dave = new Coder('Dave', 'Trap', 24)
+console.log(Dave.getAge())
+
+class WebDev extends Coder {
+  constructor(public computer: string, name: string, lang: string, age: number){
+    super(name, lang, age)
+    this.computer = computer;
+  }
+
+  public getLang(){
+    return `Hello I write ${this.lang}`
+  }
+}
+
+const Sara = new WebDev('Mac', 'Sara', 'Typescript', 29)
+console.log(Sara.getLang());
+console.log(Sara.computer)
 
