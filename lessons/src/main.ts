@@ -249,3 +249,69 @@ console.log(monthlyIncomes);
 //================================================================================================
 
 // Generics
+// const stringEcho = (arg: string): string => arg
+const echo = <T>(arg: T ): T => arg
+
+const isObj = <T>(arg: T): boolean => {
+  return (typeof arg === 'object' && !Array.isArray(arg) && arg !== null)
+}
+
+console.log(isObj('Jhon'));
+console.log(isObj(true));
+console.log(isObj([1,2,3]));
+console.log(isObj({name: 'Jhon'}));
+
+const isTrue = <T>(arg: T) : {arg: T, is: boolean} => {
+  if (Array.isArray(arg) && !arg.length) {return {arg, is: false}}
+  if(isObj(arg) && !Object.keys(arg as keyof T).length){
+    return {arg, is: false}
+  }
+  return {arg, is: !!arg}
+}
+
+console.log(isTrue({name: 'Jhon'}));
+console.log(isTrue(true));
+console.log(isTrue(false));
+console.log(isTrue([1,2,3,4,5]));
+console.log(isTrue(undefined));
+console.log(isTrue(NaN));
+
+interface HasId {
+  id: number,
+}
+
+const proccessUser = <T extends HasId>(user: T): T => {
+  return user;
+}
+
+console.log(proccessUser({id: 1, name: "Tom"}))
+
+const getUserProperties = <T extends HasId, K extends keyof T>(users: T[], key: K):T[K][] => {
+  return users.map((user) => { return user[key]})
+}
+
+const userArray = [
+  {id: 1, name: 'Tom', nota: 2},
+  {id: 4, name: 'Juan', nota: 10},
+]
+
+console.log(getUserProperties(userArray, 'nota'));
+
+class StateObject<T> {
+  private data: T
+
+  constructor(value: T){
+    this.data = value;
+  }
+
+  get state (): T {
+    return this.data
+  }
+
+  set state(value: T){
+    this.data = value;
+  }
+}
+
+const store = new StateObject<number>(2)
+console.log(store.state)

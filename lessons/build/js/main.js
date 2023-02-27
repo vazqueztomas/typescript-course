@@ -161,3 +161,52 @@ const monthlyIncomes = {
 console.log(monthlyIncomes);
 //================================================================================================
 // Generics
+// const stringEcho = (arg: string): string => arg
+const echo = (arg) => arg;
+const isObj = (arg) => {
+    return (typeof arg === 'object' && !Array.isArray(arg) && arg !== null);
+};
+console.log(isObj('Jhon'));
+console.log(isObj(true));
+console.log(isObj([1, 2, 3]));
+console.log(isObj({ name: 'Jhon' }));
+const isTrue = (arg) => {
+    if (Array.isArray(arg) && !arg.length) {
+        return { arg, is: false };
+    }
+    if (isObj(arg) && !Object.keys(arg).length) {
+        return { arg, is: false };
+    }
+    return { arg, is: !!arg };
+};
+console.log(isTrue({ name: 'Jhon' }));
+console.log(isTrue(true));
+console.log(isTrue(false));
+console.log(isTrue([1, 2, 3, 4, 5]));
+console.log(isTrue(undefined));
+console.log(isTrue(NaN));
+const proccessUser = (user) => {
+    return user;
+};
+console.log(proccessUser({ id: 1, name: "Tom" }));
+const getUserProperties = (users, key) => {
+    return users.map((user) => { return user[key]; });
+};
+const userArray = [
+    { id: 1, name: 'Tom', nota: 2 },
+    { id: 4, name: 'Juan', nota: 10 },
+];
+console.log(getUserProperties(userArray, 'nota'));
+class StateObject {
+    constructor(value) {
+        this.data = value;
+    }
+    get state() {
+        return this.data;
+    }
+    set state(value) {
+        this.data = value;
+    }
+}
+const store = new StateObject(2);
+console.log(store.state);
