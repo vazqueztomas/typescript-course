@@ -1,4 +1,5 @@
 import { ReactNode, useState } from "react";
+
 import React from 'react'
 
 type CounterProps = {
@@ -7,6 +8,7 @@ type CounterProps = {
 }
 
 const Counter = ({setCount, children}: CounterProps) => {
+  
   return (
     <>
     {children}
