@@ -24,7 +24,7 @@ function App() {
         <User/>
         <UseMemoComponent/>
         <input ref = {inputRef} type = 'text'/>
-        <CounterReducer>{(num: number) => <>Current num : {num} </>}</CounterReducer>
+        <CounterReducer/>
       </Section>
     </>
   )
