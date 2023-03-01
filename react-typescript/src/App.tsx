@@ -5,6 +5,7 @@ import { useRef, useState } from "react"
 import List from "./components/List";
 import User from "./components/User";
 import UseMemoComponent from "./components/UseMemoComponent";
+import CounterReducer from "./components/CounterReducer";
 function App() {
   const [count, setCount] = useState<number>(0);
 
@@ -23,6 +24,7 @@ function App() {
         <User/>
         <UseMemoComponent/>
         <input ref = {inputRef} type = 'text'/>
+        <CounterReducer>{(num: number) => <>Current num : {num} </>}</CounterReducer>
       </Section>
     </>
   )
